@@ -1,0 +1,109 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  height: 64px;
+  padding: 0 24px;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  justify-content: space-between;
+}
+
+.header-right {
+  background: #fff;
+  height: 100%; 
+  display: flex; 
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;  /* 使其呈现圆形 */
+  background-color: #f0f0f0;  /* 默认背景色 */
+  cursor: pointer;
+  overflow: hidden;  /* 确保内部图片不会超出圆形边界 */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 240px;
+  background: #001529;
+  color: white;
+  transition: width 0.3s;
+  &.collapsed {
+    width: 80px;
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background: #f0f2f5;
+  overflow: auto;
+}
+
+
+.menu {
+  padding: 8px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active {
+  background-color: #1890ff;
+}
+
+.menu-icon {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.menu-label {
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* 菜单收起时的样式 */
+.sidebar.collapsed .menu-item {
+  padding: 12px;
+  justify-content: center;
+}
+
+.sidebar.collapsed .menu-icon {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .menu-label {
+  display: none;
+}

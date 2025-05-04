@@ -1,5 +1,9 @@
-import { Table, Button } from "antd";
-import { getCategoryList, CategoryInfo } from "../apis/CategoryApi";
+import { Table, Button,message } from "antd";
+import {
+  getCategoryList,
+  CategoryInfo,
+  deleteCategoryById
+} from "../apis/CategoryApi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -30,11 +34,36 @@ export default function Category() {
     {
       title: "Action",
       key: "action-col",
-      render: (_: unknown, record: CategoryInfo) => (
-        <Button type="link" onClick={() => handleView(record.id)}>
-          查看
-        </Button>
-      ),
+      render: (_: unknown, record: CategoryInfo) => {
+        if (record.id === 1)
+        {
+          return null;
+        }
+        return (
+        
+        <>
+          <Button
+            type="link"
+            onClick={() => {
+              if (record.id && record.id > 0) {
+                handleView(record.id);
+              }
+            }}
+          >
+            View
+          </Button>
+          <Button
+            type="link"
+            onClick={() => {
+              if (record.id && record.id > 0) {
+                handleDelete(record.id);
+              }
+            }}
+          >
+            Delete
+          </Button>
+        </>
+      )}
     },
   ];
 
@@ -62,6 +91,10 @@ export default function Category() {
       navigate(`/backend/category-detail/${id}`);
   };
 
+  const handleDelete = async (id: number) => {
+    await deleteCategoryById(id);
+    message.success("删除成功");
+  };
 
   return (
     <div>

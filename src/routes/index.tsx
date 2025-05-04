@@ -43,7 +43,9 @@ export const router = createBrowserRouter([
       {
         path: "category-detail/:id",
         lazy: async () => {
-          const { default: CategoryDetail } = await import("../pages/CategoryDetail");
+          const { default: CategoryDetail } = await import(
+            "../pages/CategoryDetail"
+          );
           return { element: <CategoryDetail /> };
         },
       },
@@ -60,6 +62,27 @@ export const router = createBrowserRouter([
           const { default: Products } = await import("../pages/Products");
           return { element: <Products /> };
         },
+        children: [
+          { index: true, element: <Navigate to="list" replace /> },
+          {
+            path: "list",
+            lazy: async () => {
+              const { default: ProductList } = await import(
+                "../pages/ProductList"
+              );
+              return { element: <ProductList /> };
+            },
+          },
+          {
+            path: "add",
+            lazy: async () => {
+              const { default: ProductAdd } = await import(
+                "../pages/ProductAdd"
+              );
+              return { element: <ProductAdd /> };
+            },
+          },
+        ],
       },
       {
         path: "orders",
@@ -70,7 +93,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div>404 页面不存在</div>,
+        element: <div>404 - Page Not Found.</div>,
       },
     ],
   },

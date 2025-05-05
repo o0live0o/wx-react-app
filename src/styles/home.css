@@ -1,0 +1,167 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.logo:hover {
+  color: #007bff;
+}
+
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+  padding-top: 1rem;
+}
+
+.search-results {
+  flex: 1;
+}
+
+.result-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.result-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.result-item:focus {
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.result-item h3 {
+  margin: 0 0 10px 0;
+  color: #1a0dab;
+}
+
+.result-item p {
+  margin: 0;
+  color: #4d5156;
+  font-size: 14px;
+}
+
+.top-list {
+  width: 300px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  height: fit-content; 
+  position: sticky;
+  border: 1px solid #f0f0f0; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.top-list h2 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.top-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.rank-number {
+  width: 24px;
+  height: 24px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #666;
+}
+
+.rank-title {
+  flex: 1;
+  color: #333;
+}
+
+.view-count {
+  color: #999;
+  font-size: 12px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 8px;
+}
+
+.page-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-number:hover {
+  background-color: #f0f0f0;
+}
+
+.page-number.active {
+  background-color: #1890ff;
+  color: white;
+}
+
+.page-btn {
+  padding: 0 15px;
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-btn:hover {
+  color: #1890ff;
+  border-color: #1890ff;
+}
+
+.page-btn:disabled {
+  cursor: not-allowed;
+  color: #d9d9d9;
+}

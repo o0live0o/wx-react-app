@@ -1,12 +1,7 @@
 import request from "../utils/request";
-
+import { PageResult,PageRequest } from "../types";
 export interface ProductInfo {
     id?: number;
-    name: string;
-    description: string;
-}
-
-export interface CreateProductRequest {
     categoryId: number;
     name: string;
     brand: string;
@@ -15,14 +10,33 @@ export interface CreateProductRequest {
     productAttrs: { categoryAttributeId: number; value: string }[];
 }
 
-export const getProducts = async () => {
-    const res = await request.get<ProductInfo[]>("/api/product", { params: { page: 1, pageSize: 10 }});
+export interface ProductViewInfo {
+    id?: number;
+    categoryId: number;
+    categoryName: string;
+    name: string;
+    brand: string;
+    model: string;
+    description: string;
+    productAttrs: ProductAttr[];
+}
+
+export interface ProductAttr {
+    id: number;
+    name: string;
+    value: string;
+}
+export const getProducts = async (params: PageRequest) => {
+    const res = await request.get<PageResult<ProductInfo>>(`/api/product?pageIndex=${params.page}&pageSize=${params.pageSize}`);
     return res; 
 }
 
-export const createProduct = async (data: CreateProductRequest) => {
+export const getProductById = async (id: number) => {
+    const res = await request.get<ProductViewInfo>(`/api/product/${id}`);
+    return res;
+}
 
-
+export const createProduct = async (data: ProductInfo) => {
     const requestId = crypto.randomUUID();
     const res = await request.post("/api/Product", data , {
         headers: {

@@ -7,7 +7,7 @@ import {
   CategoryAttr,
   deleteCategoryAttr,
   addCategoryAttr
-} from "../apis/CategoryApi";
+} from "../../apis/CategoryApi";
 
 export default function CategoryDetail() {
   const { id } = useParams<{ id: string }>();
@@ -61,7 +61,7 @@ export default function CategoryDetail() {
 
   const columns = [
     {
-      title: "属性",
+      title: "Attribute",
       dataIndex: "name",
       key: "name-col",
     },
@@ -97,7 +97,7 @@ export default function CategoryDetail() {
               onClick={showModal}
               style={{ marginBottom: 16 }}
             >
-              新增属性
+              Add
             </Button>
           </div>
         )}
@@ -109,18 +109,18 @@ export default function CategoryDetail() {
         onCancel={handleCancel}
         footer={[
           <Button key="cancel" onClick={handleCancel}>
-            取消
+            Cancel
           </Button>,
           <Button key="ok" type="primary" onClick={handleOk}>
-            确定
+            Confirm
           </Button>,
         ]}
       >
         <Form form={form} layout="vertical">
           <Form.Item
             name="attrName"
-            label="属性名称"
-            rules={[{ required: true, message: "请输入属性名称" }]}
+            label="Attribute"
+            rules={[{ required: true, message: "Please input attribute" }]}
           >
             <Input />
           </Form.Item>

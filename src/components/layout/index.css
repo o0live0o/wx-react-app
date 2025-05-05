@@ -14,6 +14,10 @@
   justify-content: space-between;
 }
 
+.header-left {
+  cursor: pointer;
+}
+
 .header-right {
   background: #fff;
   height: 100%; 
@@ -106,4 +110,17 @@
 
 .sidebar.collapsed .menu-label {
   display: none;
+}
+
+.login-link {
+  cursor: pointer;
+  color: #1677ff;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.header-right-avatar {
+  cursor: pointer;
 }

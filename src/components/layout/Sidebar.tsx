@@ -11,29 +11,19 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   {
     key: "/backend/dashboard",
-    label: "仪表盘",
+    label: "Dashboard",
     icon: "📊",
   },
   {
-    key: "/backend/users",
-    label: "用户管理",
-    icon: "👥",
-  },
-  {
     key: "/backend/products",
-    label: "商品管理",
+    label: "Product",
     icon: "🛍️",
   },
   {
     key: "/backend/category",
-    label: "分类管理",
+    label: "Category",
     icon: "🛍️",
-  },
-  {
-    key: "/backend/orders",
-    label: "订单管理",
-    icon: "📝",
-  },
+  }
 ];
 
 export default function Sidebar({ collapsed }: { collapsed: boolean }) {
@@ -43,7 +33,7 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
   return (
     <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <nav className="menu">
-        {/* 菜单项内容 */}
+        {/* menu */}
         {menuItems.map((item) => (
           <div
             key={item.key}

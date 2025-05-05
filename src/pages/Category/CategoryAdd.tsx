@@ -1,7 +1,7 @@
 import { Form, Input, Select, Button, message, Steps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCategoryList, addCategory, CategoryInfo, CategoryAttr } from "../apis/CategoryApi";
+import { getCategoryList, addCategory, CategoryInfo, CategoryAttr } from "../../apis/CategoryApi";
 const { Step } = Steps;
 
 export default function CategoryAdd() {
@@ -14,8 +14,8 @@ export default function CategoryAdd() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getCategoryList();
-        setCategories(response);
+        const response = await getCategoryList({ page:1, pageSize:1000 });
+        setCategories(response.items);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -100,19 +100,19 @@ export default function CategoryAdd() {
   return (
     <div>
       <Steps current={currentStep}>
-        <Step title="节点" />
-        <Step title="属性" />
-        <Step title="创建" />
+        <Step title="Category" />
+        <Step title="Attribute" />
+        <Step title="Create" />
       </Steps>
       <Form form={form} name="addCategory" layout="vertical">
         {currentStep === 0 && (
           <>
             <Form.Item
               name="parentId"
-              label="选择根节点"
-              rules={[{ required: true, message: "请选择根节点" }]}
+              label="Select Root Node"
+              rules={[{ required: true, message: "Please select root node" }]}
             >
-              <Select placeholder="请选择根节点">
+              <Select placeholder="Please select root node">
                 {categories.map((category) => (
                   <Select.Option key={category.id} value={category.id}>
                     {category.name}
@@ -122,24 +122,24 @@ export default function CategoryAdd() {
             </Form.Item>
             <Form.Item
               name="name"
-              label="新节点名称"
-              rules={[{ required: true, message: "请输入新节点名称!" }]}
+              label="Node"
+              rules={[{ required: true, message: "Please input node name!" }]}
             >
-              <Input placeholder="新节点名称" />
+              <Input placeholder="Node" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" onClick={nextStep}>
-                下一步
+                Next
               </Button>
               <Button
                 type="primary"
                 onClick={goToPreview}
                 style={{ marginLeft: 8 }}
               >
-                创建
+                Create
               </Button>
               <Button style={{ marginLeft: 8 }} onClick={onCancel}>
-                取消
+                Cancel
               </Button>
             </Form.Item>
           </>
@@ -149,7 +149,7 @@ export default function CategoryAdd() {
             {dynamicAttributes.map((attr, index) => (
               <div key={index} style={{ marginBottom: 16 }}>
                 <Input
-                  placeholder="属性名称"
+                  placeholder="Attribute"
                   value={attr}
                   onChange={(e) => updateAttribute(index, e.target.value)}
                   style={{ width: "100%" }}
@@ -157,32 +157,32 @@ export default function CategoryAdd() {
               </div>
             ))}
             <Button type="dashed" onClick={addAttribute}>
-              添加属性
+              Add
             </Button>
             <Form.Item style={{ marginTop: 16 }}>
-              <Button onClick={prevStep}>上一步</Button>
+              <Button onClick={prevStep}>Prev</Button>
               <Button
                 type="primary"
                 onClick={goToPreview}
                 style={{ marginLeft: 8 }}
               >
-                创建
+                Priview
               </Button>
               <Button style={{ marginLeft: 8 }} onClick={onCancel}>
-                取消
+                Cancel
               </Button>
             </Form.Item>
           </>
         )}
         {currentStep === 2 && (
           <>
-            <Form.Item label="选择根节点">
+            <Form.Item label="Select node">
               <Input value={form.getFieldValue("parentId")} disabled />
             </Form.Item>
-            <Form.Item label="新节点名称">
+            <Form.Item label="Node">
               <Input value={form.getFieldValue("name")} disabled />
             </Form.Item>
-            <Form.Item label="属性">
+            <Form.Item label="Attribute">
               {dynamicAttributes.map((attr, index) => (
                 <div key={index} style={{ marginBottom: 8 }}>
                   <span>
@@ -192,16 +192,16 @@ export default function CategoryAdd() {
               ))}
             </Form.Item>
             <Form.Item>
-              <Button onClick={prevStep}>上一步</Button>
+              <Button onClick={prevStep}>Prev</Button>
               <Button
                 type="primary"
                 onClick={onFinish}
                 style={{ marginLeft: 8 }}
               >
-                确认创建
+                Submit
               </Button>
               <Button style={{ marginLeft: 8 }} onClick={onCancel}>
-                取消
+                Cancel
               </Button>
             </Form.Item>
           </>

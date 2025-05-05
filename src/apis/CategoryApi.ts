@@ -1,5 +1,5 @@
 import request from "../utils/request";
-
+import { PageResult,PageRequest } from "../types";
 export interface CategoryInfo {
     id?: number;
     name: string;
@@ -22,8 +22,8 @@ export const deleteCategoryById = async (id: number) => {
     return res
 }
 
-export const getCategoryList = async () => {
-    const res = await request.get<CategoryInfo[]>("/api/category");
+export const getCategoryList = async (params: PageRequest) => {
+    const res = await request.get<PageResult<CategoryInfo>>(`/api/category?pageIndex=${params.page}&pageSize=${params.pageSize}`);
     return res
 }
 

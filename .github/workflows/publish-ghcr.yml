@@ -1,10 +1,11 @@
 name: Publish to GHCR
 
 on:
-  push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+  workflow_dispatch: # Allows manual triggering
+  # push:
+  #   branches: ['main']
+  # pull_request:
+  #   branches: ['main']
 
 env:
   REGISTRY: ghcr.io
